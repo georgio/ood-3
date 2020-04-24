@@ -1,0 +1,23 @@
+@startuml
+class Member {
+    - name : String
+    - address : String
+    - phoneNumber : String
+    - id : String
+    - balance : Double
+    - lastCheckout : DateTime
+    + Member(id:String, name:String, address:String, phoneNumber:String)
+    + getId() : String
+    + setId(id:String) : void
+    + getName() : String
+    + setName(name:String) : void
+    + getAddress() : String
+    + setAddress(address:String) : void
+    + getPhoneNumber() : String
+    + setPhoneNumber(phoneNumber:String) : void
+    + setBalance(balance:Double) : void
+    + getBalance() : Double
+    + getLastCheckout() : DateTime
+    + setLastCheckout(lastCheckout:DateTime) : void
+}
+@enduml

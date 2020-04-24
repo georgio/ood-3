@@ -1,0 +1,14 @@
+@startuml
+class Item {
+    - title : Title
+    - serialNumber : UInt64
+    - available : bool
+    + Item(serialNumber:UInt64, title:Title)
+    + setSerialNumber(serialNumber:UInt64) : void
+    + getSerialNumber() : UInt64
+    + setTitle(title:Title) : void
+    + getTitle() : Title
+    + isAvailable() : bool
+    + setAvailable(available:bool) : void
+}
+@enduml

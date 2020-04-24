@@ -1,0 +1,18 @@
+@startuml
+class Music {
+    - duration : UInt64
+    - tracks : UInt64
+    - producer : String
+    - singer : String
+    + Music(rentalCode:UInt64, name:String, description:String, type:TitleType, producer:String, singer:String, duration:UInt64, tracks:UInt64)
+    + getProducer() : String
+    + setProducer(producer:String) : void
+    + getSinger() : String
+    + setSinger(singer:String) : void
+    + getDuration() : UInt64
+    + setDuration(duration:UInt64) : void
+    + getTracks() : UInt64
+    + setTracks(tracks:UInt64) : void
+}
+Title <|-- Music
+@enduml

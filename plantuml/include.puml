@@ -1,0 +1,224 @@
+@startuml
+class Game {
+    - year : UInt64
+    - producer : String;
+    + Game(rentalCode:UInt64, name:String, description:String, type:TitleType, producer:String, year:UInt64)
+    + getProducer() : String
+    + setProducer(producer:String) : void
+    + getYear() : UInt64
+    + setYear(year:UInt64) : void
+}
+Title <|-- Game
+class Util <<static>> {
+    + newReleaseModifier : UInt64
+    + normalModifier : UInt64
+    + promotionalModifier : UInt64
+    + movieModifier : Double
+    + musicModifier : Double
+    + gameModifier : Double
+    + lateFeeModifier : Double
+}
+class Member {
+    - name : String
+    - address : String
+    - phoneNumber : String
+    - id : String
+    - balance : Double
+    - lastCheckout : DateTime
+    + Member(id:String, name:String, address:String, phoneNumber:String)
+    + getId() : String
+    + setId(id:String) : void
+    + getName() : String
+    + setName(name:String) : void
+    + getAddress() : String
+    + setAddress(address:String) : void
+    + getPhoneNumber() : String
+    + setPhoneNumber(phoneNumber:String) : void
+    + setBalance(balance:Double) : void
+    + getBalance() : Double
+    + getLastCheckout() : DateTime
+    + setLastCheckout(lastCheckout:DateTime) : void
+}
+class Rental {
+    - dueDate : DateTime
+    - rentalDate : DateTime
+    - dateReturned : DateTime
+    - member : Member
+    - baseFee : Double
+    - extraFee : Double
+    + Rental(item:Item, member:Member)
+    + getDueDate() : DateTime
+    + setDueDate(dueDate:DateTime) : void
+    + getDateReturned() : DateTime
+    + setDateReturned(dateReturned:DateTime) : void
+    + getRentalDate() : DateTime
+    + setRentalDate(rentalDate:DateTime) : void
+    + setMember(member:Member) : void
+    + getMember() : Member
+    + setItem(item:Item) : void
+    + getItem() : Item
+    + getBaseFee() : Double
+    + setBaseFee(baseFee:Double) : void
+    + getExtraFee() : Double
+    + setExtraFee(extraFee:Double) : void
+}
+note bottom of Member
+- A Member may rent multiple items at a time
+- A Member must pay any late fees before renting a new Item
+end note
+Rental "*" --> "1" Member : Rents
+Rental "*" --> "1" Store : From
+Rental "*" --- "0..*" Item
+class Catalog {
+    - name : String
+    + Catalog(name:String)
+    + setName(name:String) : void
+    + getName() : String
+    + getTitles() : List<Title>
+    + addTitle(t:Title) : void
+}
+Catalog "1" --> "*" Title : Contains
+class Store {
+    - name : String
+    - location : String
+    - phone : String
+    - manager : String
+    + Store(name:String, location:String, phone:String, manager:String)
+    + setName(name:String) : void
+    + getName() : String
+    + setLocation(location:String) : void
+    + getLocation() : String
+    + setPhone(phone:String) : void
+    + getPhone() : String
+    + setManager(manager:String) : void
+    + getManager() : String
+    + getItemCount() : UInt64
+    + getItems() : List<Item>
+    + addItem(i:Item) : void
+}
+Store "1" --> "*" Item : Stocks
+class DailyLog {
+    - DateTime : date
+    + DailyLog(date:DateTime)
+    + getDate() : DateTime
+    + getRentalCount() : UInt64
+    + getRentals() : List<Rental>
+    + addRental(r:Rental) : void
+}
+DailyLog "1" --> "*" Rental : Contains
+class Exec {
+    {static} Main() : void
+}
+class Item {
+    - title : Title
+    - serialNumber : UInt64
+    - available : bool
+    + Item(serialNumber:UInt64, title:Title)
+    + setSerialNumber(serialNumber:UInt64) : void
+    + getSerialNumber() : UInt64
+    + setTitle(title:Title) : void
+    + getTitle() : Title
+    + isAvailable() : bool
+    + setAvailable(available:bool) : void
+}
+Item "*" --> "1" Title : Described-by
+class Title {
+    - rentalCode : UInt64
+    - name : String
+    - description : String
+    - type : TitleType
+    + setRentalCode(rentalCode:UInt64) : void
+    + getRentalCode() : UInt64
+    + setName(name:String) : void
+    + getName() : String
+    + setDescription(description:String) : void
+    + getdescription() : String
+    + getTitleType() : TitleType
+    + setType(type:TitleType) : void
+}
+note bottom of Title
+- Price depends on Content
+- Loan duration depends on TitleType
+end note
+enum TitleType {
+    NewRelease,
+    Promotional,
+    Normal,
+}
+class Music {
+    - duration : UInt64
+    - tracks : UInt64
+    - producer : String
+    - singer : String
+    + Music(rentalCode:UInt64, name:String, description:String, type:TitleType, producer:String, singer:String, duration:UInt64, tracks:UInt64)
+    + getProducer() : String
+    + setProducer(producer:String) : void
+    + getSinger() : String
+    + setSinger(singer:String) : void
+    + getDuration() : UInt64
+    + setDuration(duration:UInt64) : void
+    + getTracks() : UInt64
+    + setTracks(tracks:UInt64) : void
+}
+Title <|-- Music
+class Movie {
+    - duration : UInt64
+    - year : UInt64
+    - director : String
+    - cast : String
+    + Movie(rentalCode:UInt64, name:String, description:String, type:TitleType, director:String, duration:UInt64, cast:String, year:UInt64)
+    + getDirector() : String
+    + setDirector(director:String) : void
+    + getCast() : String
+    + setCast(cast:String) : void
+    + getDuration() : UInt64
+    + setDuration(duration:UInt64) : void
+    + getYear() : UInt64
+    + setYear(year:UInt64) : void
+}
+Title <|-- Movie
+class SuperRent {
+    - catalog : Catalog
+    - userIdCounter : UInt64
+    - rentalCodeCounter : UInt64
+    + SuperRent()
+    + newDay() : void
+    + getUserIdCounter() : UInt64
+    + setUserIdCounter(userIdCounter:UInt64) : void
+    + getSerialNumberCounter() : UInt64
+    + setSerialNumberCounter(serialNumberCounter:UInt64) : void
+    + getRentalCodeCounter() : UInt64
+    + setRentalCodeCounter(rentalCodeCounter:UInt64) : void
+    + getStores() : List<Store>
+    + createStore() : void
+    + addStore(store:Store) : void
+    + getStoreByName(name:String) : Store
+    + createCatalog() : void
+    + getCatalog() : Catalog
+    + setCatalog(catalog:Catalog) : void
+    + addDailyLog(dailyLog:DailyLog) : void
+    + getDailyLogs() : List<DailyLog>
+    + getMemberById(Id:String) : Member
+    + createMember() : void
+    + addMember(member:Member) : void
+    + getMembers() : List<Member>
+    + createRental() : void
+    + returnItem() : void
+    + addRental(rental:Rental) : void
+    + promptCatalog() : Catalog
+    + promptMember(id:String) : Member
+    + promptItem(title:Title, serialNumber:UInt64) : Item
+    + promptStore() : Store
+    + promptTitleType() : TitleType
+    + promptTitle(rentalCode:UInt64) : Title
+    + promptContent(rentalCode:UInt64, name:String, description:String, type:TitleType) : Title
+    + promptGame(rentalCode:UInt64, name:String, description:String, type:TitleType) : Game
+    + promptMovie(rentalCode:UInt64, name:String, description:String, type:TitleType) : Movie
+    + promptMusic(rentalCode:UInt64, name:String, description:String, type:TitleType) : Music
+}
+SuperRent "1" --> "1" Catalog : Owns
+SuperRent "1" --> "*" Member : Manages
+SuperRent "1" --> "*" DailyLog : Manages
+SuperRent "1" --> "*" Rental : Manages
+SuperRent "1" --> "1..*" Store : Manages
+@enduml

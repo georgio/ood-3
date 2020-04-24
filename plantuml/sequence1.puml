@@ -1,0 +1,18 @@
+@startuml
+actor Customer #red
+actor SalesAssistant #blue
+database System
+Customer -> SalesAssistant : 1. Arrives with DVDs to rent
+SalesAssistant -> System : 2. Starts new rental
+Customer -> SalesAssistant : 3. Membership ID
+SalesAssistant -> System : 4. Membership ID
+SalesAssistant -> System : 5. DVD ID
+System -> SalesAssistant : 6. Item description, rental fee, rental duration, running total
+SalesAssistant -> SalesAssistant : Repeats 6. and 7. for each DVD
+System -> SalesAssistant : 7. Total rental fee
+SalesAssistant -> Customer : 8. Total rental fee + payment request
+Customer -> SalesAssistant : 9. Cash
+SalesAssistant -> System : 10. Payment
+System -> SalesAssistant : 11. Receipt
+SalesAssistant -> Customer : 12. Receipt
+@enduml

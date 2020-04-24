@@ -1,0 +1,21 @@
+@startuml
+class Title {
+    - rentalCode : UInt64
+    - name : String
+    - description : String
+    - type : TitleType
+    + setRentalCode(rentalCode:UInt64) : void
+    + getRentalCode() : UInt64
+    + setName(name:String) : void
+    + getName() : String
+    + setDescription(description:String) : void
+    + getdescription() : String
+    + getTitleType() : TitleType
+    + setType(type:TitleType) : void
+}
+enum TitleType {
+    NewRelease,
+    Promotional,
+    Normal,
+}
+@enduml

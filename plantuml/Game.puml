@@ -1,0 +1,12 @@
+@startuml
+class Game {
+    - year : UInt64
+    - producer : String;
+    + Game(rentalCode:UInt64, name:String, description:String, type:TitleType, producer:String, year:UInt64)
+    + getProducer() : String
+    + setProducer(producer:String) : void
+    + getYear() : UInt64
+    + setYear(year:UInt64) : void
+}
+Title <|-- Game
+@enduml

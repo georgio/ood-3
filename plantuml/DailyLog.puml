@@ -1,0 +1,10 @@
+@startuml
+class DailyLog {
+    - DateTime : date
+    + DailyLog(date:DateTime)
+    + getDate() : DateTime
+    + getRentalCount() : UInt64
+    + getRentals() : List<Rental>
+    + addRental(r:Rental) : void
+}
+@enduml

@@ -1,0 +1,25 @@
+@startuml
+class Rental {
+    - dueDate : DateTime
+    - rentalDate : DateTime
+    - dateReturned : DateTime
+    - member : Member
+    - baseFee : Double
+    - extraFee : Double
+    + Rental(item:Item, member:Member)
+    + getDueDate() : DateTime
+    + setDueDate(dueDate:DateTime) : void
+    + getDateReturned() : DateTime
+    + setDateReturned(dateReturned:DateTime) : void
+    + getRentalDate() : DateTime
+    + setRentalDate(rentalDate:DateTime) : void
+    + setMember(member:Member) : void
+    + getMember() : Member
+    + setItem(item:Item) : void
+    + getItem() : Item
+    + getBaseFee() : Double
+    + setBaseFee(baseFee:Double) : void
+    + getExtraFee() : Double
+    + setExtraFee(extraFee:Double) : void
+}
+@enduml

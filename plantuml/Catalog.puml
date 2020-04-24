@@ -1,0 +1,10 @@
+@startuml
+class Catalog {
+    - name : String
+    + Catalog(name:String)
+    + setName(name:String) : void
+    + getName() : String
+    + getTitles() : List<Title>
+    + addTitle(t:Title) : void
+}
+@enduml

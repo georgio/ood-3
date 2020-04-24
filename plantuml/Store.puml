@@ -1,0 +1,20 @@
+@startuml
+class Store {
+    - name : String
+    - location : String
+    - phone : String
+    - manager : String
+    + Store(name:String, location:String, phone:String, manager:String)
+    + setName(name:String) : void
+    + getName() : String
+    + setLocation(location:String) : void
+    + getLocation() : String
+    + setPhone(phone:String) : void
+    + getPhone() : String
+    + setManager(manager:String) : void
+    + getManager() : String
+    + getItemCount() : UInt64
+    + getItems() : List<Item>
+    + addItem(i:Item) : void
+}
+@enduml

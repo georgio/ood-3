@@ -1,0 +1,11 @@
+@startuml
+class Util <<static>> {
+    + newReleaseModifier : UInt64
+    + normalModifier : UInt64
+    + promotionalModifier : UInt64
+    + movieModifier : Double
+    + musicModifier : Double
+    + gameModifier : Double
+    + lateFeeModifier : Double
+}
+@enduml

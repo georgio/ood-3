@@ -1,0 +1,41 @@
+@startuml
+class SuperRent {
+    - catalog : Catalog
+    - userIdCounter : UInt64
+    - rentalCodeCounter : UInt64
+    + SuperRent()
+    + newDay() : void
+    + getUserIdCounter() : UInt64
+    + setUserIdCounter(userIdCounter:UInt64) : void
+    + getSerialNumberCounter() : UInt64
+    + setSerialNumberCounter(serialNumberCounter:UInt64) : void
+    + getRentalCodeCounter() : UInt64
+    + setRentalCodeCounter(rentalCodeCounter:UInt64) : void
+    + getStores() : List<Store>
+    + createStore() : void
+    + addStore(store:Store) : void
+    + getStoreByName(name:String) : Store
+    + createCatalog() : void
+    + getCatalog() : Catalog
+    + setCatalog(catalog:Catalog) : void
+    + addDailyLog(dailyLog:DailyLog) : void
+    + getDailyLogs() : List<DailyLog>
+    + getMemberById(Id:String) : Member
+    + createMember() : void
+    + addMember(member:Member) : void
+    + getMembers() : List<Member>
+    + createRental() : void
+    + returnItem() : void
+    + addRental(rental:Rental) : void
+    + promptCatalog() : Catalog
+    + promptMember(id:String) : Member
+    + promptItem(title:Title, serialNumber:UInt64) : Item
+    + promptStore() : Store
+    + promptTitleType() : TitleType
+    + promptTitle(rentalCode:UInt64) : Title
+    + promptContent(rentalCode:UInt64, name:String, description:String, type:TitleType) : Title
+    + promptGame(rentalCode:UInt64, name:String, description:String, type:TitleType) : Game
+    + promptMovie(rentalCode:UInt64, name:String, description:String, type:TitleType) : Movie
+    + promptMusic(rentalCode:UInt64, name:String, description:String, type:TitleType) : Music
+}
+@enduml

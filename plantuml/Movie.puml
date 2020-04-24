@@ -1,0 +1,18 @@
+@startuml
+class Movie {
+    - duration : UInt64
+    - year : UInt64
+    - director : String
+    - cast : String
+    + Movie(rentalCode:UInt64, name:String, description:String, type:TitleType, director:String, duration:UInt64, cast:String, year:UInt64)
+    + getDirector() : String
+    + setDirector(director:String) : void
+    + getCast() : String
+    + setCast(cast:String) : void
+    + getDuration() : UInt64
+    + setDuration(duration:UInt64) : void
+    + getYear() : UInt64
+    + setYear(year:UInt64) : void
+}
+Title <|-- Movie
+@enduml

@@ -1,0 +1,5 @@
+@startuml
+class Exec {
+    {static} Main() : void
+}
+@enduml
